@@ -1,9 +1,13 @@
 #field-div {
     display: grid;
-    
+    grid-template-columns: repeat(13, 40px);
 }
 
 .field-tile-class {
-    background-color: tan;
-    border: 1px solid brown;
+    width: 40px;
+    height: 40px;
+    background-color: null;
+    border: 1px solid green;
+    text-align: center;
+    color: transparent;
 }
