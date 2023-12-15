@@ -1,3 +1,8 @@
+#field-div {
+    display: grid;
+    
+}
+
 .field-tile-class {
     background-color: tan;
     border: 1px solid brown;
