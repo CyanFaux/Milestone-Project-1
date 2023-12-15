@@ -1,13 +1,16 @@
 #field-div {
     display: grid;
     grid-template-columns: repeat(13, 40px);
+    grid-template-rows: repeat(13, 40px);
+    border: 1px solid black;
+    width: 520px;
+    height: 520px;
 }
 
 .field-tile-class {
     width: 40px;
     height: 40px;
-    background-color: null;
-    border: 1px solid green;
+    background-color: transparent;
     text-align: center;
-    color: transparent;
+    color: gray;
 }
