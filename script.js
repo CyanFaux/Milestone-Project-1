@@ -259,7 +259,7 @@ allCells.forEach((cell) => {
       ].includes(cellContent)
     ) {
       cell.style.borderLeft = "3px solid rgb(0, 255, 0)";
-/*       cell.style.boxShadow = "-5px 0px 5px rgba(192, 192, 192, 0.5)" */
+      /*       cell.style.boxShadow = "-5px 0px 5px rgba(192, 192, 192, 0.5)" */
     }
     if (
       [
@@ -285,8 +285,8 @@ allCells.forEach((cell) => {
         "j4",
       ].includes(cellContent)
     ) {
-      cell.style.borderLeft = "1px solid rgb(0, 255, 0)";
-/*       cell.style.boxShadow = "-5px 0px 5px rgba(192, 192, 192, 0.5)" */
+      cell.style.borderLeft = "2px solid rgb(0, 255, 0)";
+      /*       cell.style.boxShadow = "-5px 0px 5px rgba(192, 192, 192, 0.5)" */
     }
     if (
       [
@@ -315,7 +315,7 @@ allCells.forEach((cell) => {
       ].includes(cellContent)
     ) {
       cell.style.borderTop = "3px solid rgb(0,255, 0)";
-/*       cell.style.boxShadow = "0px -5px 5px rgba(192, 192, 192, 0.5)" */
+      /*       cell.style.boxShadow = "0px -5px 5px rgba(192, 192, 192, 0.5)" */
     }
     if (
       [
@@ -341,119 +341,122 @@ allCells.forEach((cell) => {
         "j4",
       ].includes(cellContent)
     ) {
-      cell.style.borderTop = "1px solid rgb(0,255, 0)";
+      cell.style.borderTop = "2px solid rgb(0,255, 0)";
       /* cell.style.boxShadow = "0px -5px 5px rgba(192, 192, 192, 0.5)" */
     }
-    if (
-        [
-            "d1",
-            "e1",
-        ].includes(cellContent)
-    ) {
-        cell.style.borderBottom = "3px solid rgb(0, 255, 0)";
+    if (["d1", "e1"].includes(cellContent)) {
+      cell.style.borderBottom = "3px solid rgb(0, 255, 0)";
     }
   }
 });
 
 const circleTrack = [
-{content: "k13"},
-{content: "k12"},
-{content: "k11"},
-{content: "k10"},
-{content: "k9"},
-{content: "k8"},
-{content: "k7"},
-{content: "k6"},
-{content: "k5"},
-{content: "k4"},
-{content: "k3"},
-{content: "k2"},
-{content: "j2"},
-{content: "i2"},
-{content: "h2"},
-{content: "g2"},
-{content: "f2"},
-{content: "f3"},
-{content: "f4"},
-{content: "f5"},
-{content: "f6"},
-{content: "f7"},
-{content: "f8"},
-{content: "f9"},
-{content: "f10"},
-{content: "f11"},
-{content: "f12"},
-{content: "e12"},
-{content: "d12"},
-{content: "c12"},
-{content: "b12"},
-{content: "a12"},
-{content: "a11"},
-{content: "a10"},
-{content: "a9"},
-{content: "a8"},
-{content: "a7"},
-{content: "a6"},
-{content: "a5"},
-{content: "a4"},
-{content: "a3"},
-{content: "a2"},
-{content: "a1"},
-{content: "a"}
-]
+  { content: "k13" },
+  { content: "k12" },
+  { content: "k11" },
+  { content: "k10" },
+  { content: "k9" },
+  { content: "k8" },
+  { content: "k7" },
+  { content: "k6" },
+  { content: "k5" },
+  { content: "k4" },
+  { content: "k3" },
+  { content: "k2" },
+  { content: "j2" },
+  { content: "i2" },
+  { content: "h2" },
+  { content: "g2" },
+  { content: "f2" },
+  { content: "f3" },
+  { content: "f4" },
+  { content: "f5" },
+  { content: "f6" },
+  { content: "f7" },
+  { content: "f8" },
+  { content: "f9" },
+  { content: "f10" },
+  { content: "f11" },
+  { content: "f12" },
+  { content: "e12" },
+  { content: "d12" },
+  { content: "c12" },
+  { content: "b12" },
+  { content: "a12" },
+  { content: "a11" },
+  { content: "a10" },
+  { content: "a9" },
+  { content: "a8" },
+  { content: "a7" },
+  { content: "a6" },
+  { content: "a5" },
+  { content: "a4" },
+  { content: "a3" },
+  { content: "a2" },
+  { content: "a1" },
+  { content: "a" },
+];
 
 const circle = document.querySelector(".circle");
 const speed = 2;
 
-
-
 const cellWalls = [
-    "i13",
-    "j13",
-    "i12",
-    "j12",
-    "i11",
-    "j11",
-    "i10",
-    "j10",
-    "i9",
-    "j9",
-    "i8",
-    "j8",
-    "j7",
-    "i7",
-    "j6",
-    "i6",
-    "i5",
-    "j5",
-    "i4",
-    "j4",
+  "i13",
+  "j13",
+  "i12",
+  "j12",
+  "i11",
+  "j11",
+  "i10",
+  "j10",
+  "i9",
+  "j9",
+  "i8",
+  "j8",
+  "j7",
+  "i7",
+  "j6",
+  "i6",
+  "i5",
+  "j5",
+  "i4",
+  "j4",
   "d1",
-  "e1",
   "d2",
-  "e2",
   "d3",
-  "e3",
   "d4",
-  "e4",
   "d5",
-  "e5",
   "d6",
-  "e6",
   "d7",
-  "e7",
   "d8",
-  "e8",
   "d9",
-  "e9",
   "d10",
+  "e1",
+  "e2",
+  "e3",
+  "e4",
+  "e5",
+  "e6",
+  "e7",
+  "e8",
+  "e9",
   "e10",
-  ];
-  
-  allCells.forEach((cell) => {
-    const cellContent = cell.textContent.trim();
-    if (cellWalls.includes(cellContent)) {
-      cell.style.boxShadow = "5px 5px 5px rgba(192, 192, 192, 0.5)"
-    }
-  });
-  
+];
+
+allCells.forEach((cell) => {
+  const cellContent = cell.textContent.trim();
+  if (cellWalls.includes(cellContent)) {
+    cell.style.boxShadow = "5px 5px 5px rgba(192, 192, 192, 0.5)";
+    cell.style.backgroundColor = "blue";
+    
+  }
+});
+
+const removeCellBoxShadow = ["d1", "e1"];
+
+allCells.forEach((cell) => {
+  const cellContent = cell.textContent.trim();
+  if (removeCellBoxShadow.includes(cellContent)) {
+    cell.style.boxShadow = "5px 0px 5px rgba(192, 192, 192, 0.5)";
+  }
+});

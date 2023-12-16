@@ -7,6 +7,7 @@
     height: 530px;
     box-sizing: border-box;
     position: relative;
+    box-shadow: 5px 5px 5px rgba(192, 192, 192, 0.5);
 }
 
 .field-tile-class {
@@ -14,15 +15,33 @@
     height: 40px;
     background-color: transparent;
     text-align: center;
-    color: rgba(192, 192, 192, 0.5);
+/*     color: rgba(192, 192, 192, 0.5); */
     box-sizing: border-box;
-/*     color: transparent; */
+    color: transparent;
 /*     border: 1px solid rgba(192, 192, 192, 0.25); */
 }
 
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(-3.3px)
+    }
+    40px {
+        transform: translateY(-6.6px);
+    }
+    60% {
+        transform: translateY(-10px)
+    }
+    80% {
+        transform: translateY(-6.6px)
+    }
+}
+
 .circle {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background-color: red;
     border: 1px solid black;
     border-radius: 50%;
@@ -32,4 +51,17 @@
     right: 45px;
     box-sizing: border-box;
     box-shadow: 5px 5px 5px rgba(192, 192, 192, 0.5);
+    animation: bounce 1s infinite;
 }
+
+/* .square {
+    width: 37px;
+    height: 37px;
+    background-color: blue;
+    border: 1px solid black;
+    z-index: 2;
+    position: absolute;
+    top: 2px;
+    right: 121px;
+    box-sizing: border-box;
+} */
