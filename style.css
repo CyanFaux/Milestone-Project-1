@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 
-/* @keyframes bounce {
+@keyframes bounce {
     0%, 100% {
         transform: translateY(0);
     }
@@ -37,7 +37,7 @@
     80% {
         transform: translateY(-6.6px)
     }
-} */
+}
 
 .circle {
     width: 20px;
@@ -48,21 +48,21 @@
     position: absolute;
     box-sizing: border-box;
     box-shadow: 5px 5px 5px rgba(192, 192, 192, 0.5);
-/*     animation: bounce 1s infinite; */
+    animation: bounce 1s infinite;
 }
 
 .circle1 {
-    top:0;
+    top:15px;
     left:410px;
 }
 
 .circle2 {
-    top:0;
+    top:15px;
     left:450px;
 }
 
 .circle3 {
-    top:0;
+    top:15px;
     left:490px;
 }
 /* .square {
