@@ -14,9 +14,9 @@
     height: 40px;
     background-color: transparent;
     text-align: center;
-    color: rgba(192, 192, 192, 0.5);
+/*     color: rgba(192, 192, 192, 0.5); */
     box-sizing: border-box;
-/*     color: transparent; */
+    color: transparent;
 /*     border: 1px solid rgba(192, 192, 192, 0.25); */
     cursor: pointer;
 }
