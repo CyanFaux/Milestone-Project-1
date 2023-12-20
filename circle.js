@@ -4,7 +4,7 @@ const circle3 = document.querySelector(".circle3");
 
 const path1 = [
   { x: 410, y: 15 },
-  { x: 410, y: 55 }, /* down */
+  { x: 410, y: 55 } /* down */,
   { x: 410, y: 95 },
   { x: 410, y: 135 },
   { x: 410, y: 175 },
@@ -14,10 +14,10 @@ const path1 = [
   { x: 410, y: 335 },
   { x: 410, y: 375 },
   { x: 410, y: 415 },
-  { x: 370, y: 415 }, /* left */
+  { x: 370, y: 415 } /* left */,
   { x: 330, y: 415 },
   { x: 290, y: 415 },
-  { x: 290, y: 375 }, /* up */
+  { x: 290, y: 375 } /* up */,
   { x: 290, y: 335 },
   { x: 290, y: 295 },
   { x: 290, y: 255 },
@@ -27,14 +27,14 @@ const path1 = [
   { x: 290, y: 95 },
   { x: 290, y: 55 },
   { x: 290, y: 15 },
-  { x: 240, y: 15 }, /* left */
+  { x: 240, y: 15 } /* left */,
   { x: 210, y: 15 },
   { x: 170, y: 15 },
   { x: 130, y: 15 },
   { x: 90, y: 15 },
   { x: 40, y: 15 },
   { x: 10, y: 15 },
-  { x: 10, y: 55 }, /* down */
+  { x: 10, y: 55 } /* down */,
   { x: 10, y: 95 },
   { x: 10, y: 135 },
   { x: 10, y: 175 },
@@ -50,7 +50,7 @@ const path1 = [
 
 const path2 = [
   { x: 450, y: 15 },
-  { x: 450, y: 55 },
+  { x: 450, y: 55 } /* down */,
   { x: 450, y: 95 },
   { x: 450, y: 135 },
   { x: 450, y: 175 },
@@ -61,12 +61,12 @@ const path2 = [
   { x: 450, y: 375 },
   { x: 450, y: 415 },
   { x: 450, y: 455 },
-  { x: 410, y: 455 }, /* left */
+  { x: 410, y: 455 } /* left */,
   { x: 370, y: 455 },
   { x: 330, y: 455 },
   { x: 290, y: 455 },
-  { x: 250, y: 455 }, 
-  { x: 250, y: 415 }, /* up */
+  { x: 250, y: 455 },
+  { x: 250, y: 415 } /* up */,
   { x: 250, y: 375 },
   { x: 250, y: 335 },
   { x: 250, y: 295 },
@@ -76,12 +76,12 @@ const path2 = [
   { x: 250, y: 135 },
   { x: 250, y: 95 },
   { x: 250, y: 55 },
-  { x: 210, y: 55 }, /* left */
+  { x: 210, y: 55 } /* left */,
   { x: 170, y: 55 },
   { x: 130, y: 55 },
   { x: 90, y: 55 },
   { x: 50, y: 55 },
-  { x: 50, y: 95 }, /* down */
+  { x: 50, y: 95 } /* down */,
   { x: 50, y: 135 },
   { x: 50, y: 175 },
   { x: 50, y: 215 },
@@ -96,7 +96,7 @@ const path2 = [
 
 const path3 = [
   { x: 490, y: 15 },
-  { x: 490, y: 55 }, /* down */
+  { x: 490, y: 55 } /* down */,
   { x: 490, y: 95 },
   { x: 490, y: 135 },
   { x: 490, y: 175 },
@@ -108,14 +108,14 @@ const path3 = [
   { x: 490, y: 415 },
   { x: 490, y: 455 },
   { x: 490, y: 495 },
-  { x: 450, y: 495 }, /* left */
+  { x: 450, y: 495 } /* left */,
   { x: 410, y: 495 },
   { x: 370, y: 495 },
   { x: 330, y: 495 },
   { x: 290, y: 495 },
   { x: 250, y: 495 },
   { x: 210, y: 495 },
-  { x: 210, y: 455 }, /* up */
+  { x: 210, y: 455 } /* up */,
   { x: 210, y: 415 },
   { x: 210, y: 375 },
   { x: 210, y: 335 },
@@ -125,10 +125,10 @@ const path3 = [
   { x: 210, y: 175 },
   { x: 210, y: 135 },
   { x: 210, y: 95 },
-  { x: 170, y: 95 }, /* left */
+  { x: 170, y: 95 } /* left */,
   { x: 130, y: 95 },
   { x: 90, y: 95 },
-  { x: 90, y: 135 }, /* down */
+  { x: 90, y: 135 } /* down */,
   { x: 90, y: 175 },
   { x: 90, y: 215 },
   { x: 90, y: 255 },
@@ -156,6 +156,8 @@ function moveCircle1() {
     step1++;
 
     setTimeout(moveCircle1, speed);
+  } else {
+/*     gameOver(); */
   }
 }
 
@@ -170,10 +172,13 @@ function moveCircle2() {
     step2++;
 
     setTimeout(moveCircle2, speed);
+  } else {
+/*     gameOver(); */
   }
 }
 
 function moveCircle3() {
+  /* enemy has not reached end */
   if (step3 < path3.length) {
     const destinationX = path3[step3].x;
     const destinationY = path3[step3].y;
@@ -184,7 +189,28 @@ function moveCircle3() {
     step3++;
 
     setTimeout(moveCircle3, speed);
+  } else {
+  /* enemy has reached end */
+/*     gameOver(); */
   }
+}
+
+function gameOver() {
+  const gameOverHTML = `
+<h1>Game Over</h1>
+<p>Try Again?</p>
+<button id="restartButton">Restart</button>`;
+
+  document.body.innerHTML = gameOverHTML;
+
+  // Add a click event listener to the restart button
+  const restartButton = document.getElementById("restartButton");
+
+// Add a click event listener
+restartButton.addEventListener("click", function () {
+  // Reload the page
+  location.reload();
+});
 }
 moveCircle1();
 moveCircle2();

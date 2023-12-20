@@ -202,15 +202,67 @@ allCells.forEach((cell) => {
   }
 });
 
+function findCellById(cellId) {
+  let foundCell = null;
+  allCells.forEach((cell) => {
+    if (cell.textContent.trim() === cellId) {
+      foundCell = cell;
+    }
+  });
+  return foundCell;
+}
+
 allCells.forEach((cell) => {
   const cellContent = cell.textContent.trim();
 
   if (cellWalls.includes(cellContent)) {
+    const blueCellId = cell.textContent.trim();
+    console.log("blueCellId:", blueCellId);
     cell.addEventListener("click", () => {
       cell.style.backgroundColor = "blue";
+
+      const borderPattern = getBorderPattern(blueCellId);
+
+      borderPattern.forEach((targetCellId) => {
+        const adjacentCell = findCellById(targetCellId);
+
+        if (adjacentCell) {
+      const existingBorderStyle = getComputedStyle(adjacentCell).border;
+      const.borderSides = existingBorderStyle.split('');
+        for (let i = 0; i < borderSides.length; i++) {
+          if (borderSides[i] === "none" || borderSides[i] === "0px") {
+
+    borderSides[i] = "2px solid red";
+  }
+        }
+      });
     });
   }
 });
+
+// Define a function to determine the border pattern relative to the blue cell's position
+function getBorderPattern(blueCellId) {
+  const fixedPattern = [
+    { x: 0, y: 1 },
+    { x: 0, y: 2 },
+    { x: 0, y: 3 },
+    { x: 1, y: 0 },
+    { x: 2, y: 0 },
+    { x: 3, y: 0 },
+    { x: 1, y: 1 },
+    { x: 2, y: 2 },
+    { x: -1, y: -1 },
+    { x: -2, y: -2 },
+    { x: -1, y: 0 },
+    { x: -2, y: 0 },
+    { x: -3, y: 0 },
+    { x: 0, y: -1 },
+    { x: 0, y: -2 },
+    { x: 0, y: -3 },
+  ];
+  return fixedPattern;
+}
+
 
 const cellGroups = [
     ["d10", "d9", "e10", "e9"],
