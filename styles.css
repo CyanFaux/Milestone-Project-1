@@ -19,13 +19,13 @@
     color: rgba(192, 192, 192, 0.5);
     box-sizing: border-box;
 /*     color: transparent; */
-/*     border: 1px solid rgba(192, 192, 192, 0.25); */
+    border: 1px solid rgba(192, 192, 192, 0.25);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .squareTower-class {
-    
+    background-color: blue;
 }
 
 #d9, #d8, #d7, #d6, #d5, #d4, #d3, #d2, #d1 {
@@ -109,7 +109,7 @@
     position: absolute;
     box-sizing: border-box;
     box-shadow: 5px 5px 5px rgba(192, 192, 192, 0.5);
-    animation: bounce 1s infinite;
+/*     animation: bounce 1s infinite; */
 }
 
 .circle1 {

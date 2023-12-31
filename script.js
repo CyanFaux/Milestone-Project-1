@@ -80,7 +80,6 @@ const createTower = document.querySelectorAll(".towerWalls")
 /* createTower changes background color and class of tile */
 createTower.forEach(cell => {
   cell.addEventListener("click", () => {
-    cell.style.backgroundColor = "blue";
     cell.classList.add("squareTower-class")
   })
 })
