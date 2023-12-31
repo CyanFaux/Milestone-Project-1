@@ -472,3 +472,88 @@ allCells.forEach((cell) => {
     cell.style.boxShadow = "5px 0px 5px rgba(192, 192, 192, 0.5)";
   }
 });
+
+function moveCircle2() {
+  if (step2 < path2.length) {
+    const destinationX = path2[step2].x;
+    const destinationY = path2[step2].y;
+
+    circle2.style.left = `${destinationX}px`;
+    circle2.style.top = `${destinationY}px`;
+
+    step2++;
+
+    checkTowerRange(circle2, path2, "squareTower-class", 5000);
+
+    setTimeout(moveCircle2, speed);
+  } else {
+    /*     gameOver(); */
+  }
+}
+
+function moveCircle3() {
+  /* enemy has not reached end */
+  if (step3 < path3.length) {
+    const destinationX = path3[step3].x;
+    const destinationY = path3[step3].y;
+
+    circle3.style.left = `${destinationX}px`;
+    circle3.style.top = `${destinationY}px`;
+
+    step3++;
+
+    checkTowerRange(circle3, path3, "squareTower-class", 5000);
+
+    setTimeout(moveCircle3, speed);
+  } else {
+    /* enemy has reached end */
+    /*     gameOver(); */
+  }
+}
+
+const speed = 1000;
+const circleDelay = 5000;
+
+function createCircle(path, towerClass) {
+
+  const circle = document.createElement("div");
+  circle.className = "circle";
+
+  const startingX = path[0].x;
+  const startingY = path[0].y;
+
+  console.log(`Starting X: ${startingX}`);
+  console.log(`Starting Y: ${startingY}`);
+
+  circle.style.left = `${startingX}px`;
+  circle.style.top = `${startingY}px`;
+
+  let step = 0;
+
+  function moveCircle() {
+    if (step < path.length) {
+      const destinationX = path[step].x;
+      const destinationY = path[step].y;
+
+      circle.style.left = `${destinationX}px`;
+      circle.style.top = `${destinationY}px`;
+
+      step++;
+
+      checkTowerRange(circle, path, towerClass, 5000);
+
+      setTimeout(moveCircle, speed);
+    } else {
+      circle.remove();
+      /*     gameOver(); */
+    }
+  }
+  document.body.appendChild(circle);
+  /* moveCircle(); */
+}
+
+function startCircles() {
+  createCircle(path2, "squareTower-class");
+}
+
+startCircles();

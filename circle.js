@@ -2,6 +2,13 @@ const circle1 = document.querySelector(".circle1");
 const circle2 = document.querySelector(".circle2");
 const circle3 = document.querySelector(".circle3");
 
+const towerRange = 3;
+
+const tileWidth = 40;
+const tileHeight = 40;
+const circleWidth = 20;
+const circleHeight = 20;
+
 const path1 = [
   { x: 410, y: 15 },
   { x: 410, y: 55 } /* down */,
@@ -140,6 +147,68 @@ const path3 = [
   { x: 90, y: 495 },
 ];
 
+function checkTowerRange(circle, path, towerClass, cooldown) {
+  /* defines the implicit method for describing the size and position of the circle */
+  const circleRect = circle.getBoundingClientRect();
+  /* defines the calculation of the horizontal coordinate of the center of the circle */
+  const circleX = circleRect.x + circleRect.width / 2;
+  /* defines the calculation of the vertical coordinate of the center of the circle */
+  const circleY = circleRect.y + circleRect.height / 2;
+
+  /* defines the rounded horizontal coordinate of the tile containing the circle */
+  const containingTileX = Math.floor(circleX / tileWidth);
+  /* defines the rounded vertical coordinate of the tile containing the circle */
+  const containingTileY = Math.floor(circleY / tileHeight);
+
+  /* defines the check for nearby towers */
+  const nearbyTowerRange = document.querySelectorAll(`.${towerClass}`);
+
+  /* for...of loop that iterates through the towerWalls class */
+  for (const tower of nearbyTowerRange) {
+    /* defines the implicit method for describing the size and position of the detected tower */
+    const tileRect = tower.getBoundingClientRect();
+    /* defines the rounded horizontal coordinate of the detected tower */
+    const currentTileX = Math.floor(tileRect.x / tileWidth);
+    /* defines the rounded vertical coordinate of the detected tower */
+    const currentTileY = Math.floor(tileRect.y / tileHeight);
+    /* defines the Manhattan distance between the circle's tile and the tower */
+    const towerRangeDistance =
+      Math.abs(containingTileX - currentTileX) +
+      Math.abs(containingTileY - currentTileY);
+
+    /* defines what happens when a circle is within tower range */
+    if (towerRangeDistance <= towerRange) {
+      offCooldown = false;
+      circle.style.opacity = "0";
+      setTimeout(() => {
+        circle.remove();
+        offCooldown = true;
+      }, cooldown);
+
+      return;
+    }
+  }
+}
+
+
+function gameOver() {
+  const gameOverHTML = `
+<h1>Game Over</h1>
+<p>Try Again?</p>
+<button id="restartButton">Restart</button>`;
+
+  document.body.innerHTML = gameOverHTML;
+
+  // Add a click event listener to the restart button
+  const restartButton = document.getElementById("restartButton");
+
+  // Add a click event listener
+  restartButton.addEventListener("click", function () {
+    // Reload the page
+    location.reload();
+  });
+}
+
 let step1 = 0;
 let step2 = 0;
 let step3 = 0;
@@ -155,9 +224,11 @@ function moveCircle1() {
 
     step1++;
 
+    checkTowerRange(circle1, path1, "squareTower-class", 5000);
+
     setTimeout(moveCircle1, speed);
   } else {
-/*     gameOver(); */
+    /*     gameOver(); */
   }
 }
 
@@ -171,9 +242,11 @@ function moveCircle2() {
 
     step2++;
 
+    checkTowerRange(circle2, path2, "squareTower-class", 5000);
+
     setTimeout(moveCircle2, speed);
   } else {
-/*     gameOver(); */
+    /*     gameOver(); */
   }
 }
 
@@ -188,30 +261,15 @@ function moveCircle3() {
 
     step3++;
 
+    checkTowerRange(circle3, path3, "squareTower-class", 5000);
+
     setTimeout(moveCircle3, speed);
   } else {
-  /* enemy has reached end */
-/*     gameOver(); */
+    /* enemy has reached end */
+    /*     gameOver(); */
   }
 }
 
-function gameOver() {
-  const gameOverHTML = `
-<h1>Game Over</h1>
-<p>Try Again?</p>
-<button id="restartButton">Restart</button>`;
-
-  document.body.innerHTML = gameOverHTML;
-
-  // Add a click event listener to the restart button
-  const restartButton = document.getElementById("restartButton");
-
-// Add a click event listener
-restartButton.addEventListener("click", function () {
-  // Reload the page
-  location.reload();
-});
-}
 moveCircle1();
 moveCircle2();
 moveCircle3();
