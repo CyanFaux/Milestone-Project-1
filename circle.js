@@ -1,3 +1,5 @@
+import { getTowerCount, incrementTowerCount } from "./script.js";
+
 const circle1 = document.querySelector(".circle1");
 const circle2 = document.querySelector(".circle2");
 const circle3 = document.querySelector(".circle3");
@@ -8,14 +10,15 @@ const tileWidth = 40;
 const tileHeight = 40;
 const circleWidth = 20;
 const circleHeight = 20;
-let onCooldown = false;
 /* define speed in ms */
 const speed = 42000;
 /* define delay between tower shot */
 const cooldown = 5000;
 const towersOnCooldownArray = [];
 let circleCount = 0;
+const currentTowerCount = getTowerCount();
 const circleScoreDisplay = document.getElementById("circle-score");
+const squareScoreDisplay = document.getElementById("square-score")
 
 const path1 = [
   { x: 410, y: 15 },
@@ -187,13 +190,15 @@ function checkTowerRange(circle, path, towerClass, cooldown, towerOnCooldown) {
 
       /* defines what happens when a circle is within an off cooldown tower range */
       if (!towersOnCooldownArray.includes(currentTower) && circleToTowerDistance <= towerRange) {
-        /* tells the function not to check current tower range anymore */
-/*         onCooldown = true; */
         circle.style.backgroundColor = "rgb(255, 0, 255)";
         circle.style.opacity = "0";
         circle.remove();
         circleCount++;
         circleScoreDisplay.textContent = `Circles: ${circleCount}`;
+        if (circleCount > 0 && circleCount % 4 === 0) {
+          incrementTowerCount();
+          squareScoreDisplay.textContent = `Squares: ${currentTowerCount}`;
+        }
         /* adds the cooldown class to the tower currently being iterated */
         currentTower.classList.add("towerOnCooldown");
         /* puts the current tower in the cooldown array */
@@ -267,8 +272,7 @@ function createCircle(path, towerClass) {
 
       requestAnimationFrame(moveCircle);
     } else {
-      circle.remove();
-      /*     gameOver(); */
+           gameOver();
     }
   }
   fieldDiv.appendChild(circle);
@@ -276,9 +280,24 @@ function createCircle(path, towerClass) {
 }
 
 function startCircles() {
-  createCircle(path1, "squareTower-class");
   createCircle(path2, "squareTower-class");
-  createCircle(path3, "squareTower-class");
+  setTimeout(() => createCircle(path1, "squareTower-class"), 2000);
+  setTimeout(() => createCircle(path3, "squareTower-class"), 4000);
+  setTimeout(() => createCircle(path1, "squareTower-class"), 8000);
+  setTimeout(() => createCircle(path2, "squareTower-class"), 8000);
+  setTimeout(() => createCircle(path2, "squareTower-class"), 10000);
+  setTimeout(() => createCircle(path3, "squareTower-class"), 10000);
+  setTimeout(() => createCircle(path1, "squareTower-class"), 12000);
+  setTimeout(() => createCircle(path3, "squareTower-class"), 12000);
+  setTimeout(() => createCircle(path1, "squareTower-class"), 16000);
+  setTimeout(() => createCircle(path2, "squareTower-class"), 16000);
+  setTimeout(() => createCircle(path3, "squareTower-class"), 16000);
+  setTimeout(() => createCircle(path1, "squareTower-class"), 18000);
+  setTimeout(() => createCircle(path2, "squareTower-class"), 18000);
+  setTimeout(() => createCircle(path3, "squareTower-class"), 18000);
+  setTimeout(() => createCircle(path1, "squareTower-class"), 20000);
+  setTimeout(() => createCircle(path2, "squareTower-class"), 20000);
+  setTimeout(() => createCircle(path3, "squareTower-class"), 20000);
 }
 
 startCircles();

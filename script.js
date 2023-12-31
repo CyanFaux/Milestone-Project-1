@@ -1,3 +1,5 @@
+export { towerCount };
+
 /* sets fieldDiv to "field-div" */
 const fieldDiv = document.getElementById("field-div");
 
@@ -66,6 +68,14 @@ const towerWalls = [
 ];
 
 let towerCount = 2;
+
+export function getTowerCount() {
+  return towerCount;
+}
+
+export function incrementTowerCount() {
+  towerCount++;
+}
 
 const squareScoreDisplay = document.getElementById("square-score")
 

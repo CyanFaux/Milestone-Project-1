@@ -19,7 +19,7 @@
 /*     color: rgba(192, 192, 192, 0.5); */
     box-sizing: border-box;
     color: transparent;
-    border: 1px solid rgba(192, 192, 192, 0.25);
+/*     border: 1px solid rgba(192, 192, 192, 0.25); */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
