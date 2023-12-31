@@ -3,7 +3,7 @@ const fieldDiv = document.getElementById("field-div");
 
 /* starts rows from the bottom */
 for (let row = 13; row >= 1; row--) {
-/* starts columns from the left */
+  /* starts columns from the left */
   for (let col = 1; col <= 13; col++) {
     /* sets the cell content to "a1", "a2", "a3", etc */
     const cellContent = `${String.fromCharCode(96 + col)}${row}`;
@@ -20,7 +20,7 @@ for (let row = 13; row >= 1; row--) {
   }
 }
 /* declare that allCells refers to cells with .field-tile-class */
-const allCells = document.querySelectorAll('.field-tile-class');
+const allCells = document.querySelectorAll(".field-tile-class");
 
 const towerWalls = [
   "i13",
@@ -63,23 +63,31 @@ const towerWalls = [
   "e8",
   "e9",
   "e10",
-]
+];
 
-allCells.forEach(cell => {
+let towerCount = 2;
+
+const squareScoreDisplay = document.getElementById("square-score")
+
+allCells.forEach((cell) => {
   /* equates placeholder variable with loop result */
-  const cellIdValue = cell.id
-/* defines criteria for towerWalls */
+  const cellIdValue = cell.id;
+  /* defines criteria for towerWalls */
   if (towerWalls.includes(cellIdValue)) {
     /* changes class to towerWalls */
-    cell.classList.add('towerWalls');
+    cell.classList.add("towerWalls");
   }
-
 });
-/* define createTower function */ 
-const createTower = document.querySelectorAll(".towerWalls")
+/* define createTower function */
+const createTower = document.querySelectorAll(".towerWalls");
 /* createTower changes background color and class of tile */
-createTower.forEach(cell => {
+createTower.forEach((cell) => {
   cell.addEventListener("click", () => {
-    cell.classList.add("squareTower-class")
-  })
-})
+    if (towerCount > 0) {
+    cell.classList.add("squareTower-class");
+    towerCount--;
+
+    squareScoreDisplay.textContent = `Squares: ${towerCount}`;
+    }
+  });
+});

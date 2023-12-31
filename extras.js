@@ -473,6 +473,29 @@ allCells.forEach((cell) => {
   }
 });
 
+let step1 = 0;
+let step2 = 0;
+let step3 = 0;
+const speed = 1000;
+
+function moveCircle1() {
+  if (step1 < path1.length) {
+    const destinationX = path1[step1].x;
+    const destinationY = path1[step1].y;
+
+    circle1.style.left = `${destinationX}px`;
+    circle1.style.top = `${destinationY}px`;
+
+    step1++;
+
+    checkTowerRange(circle1, path1, "squareTower-class", 5000);
+
+    setTimeout(moveCircle1, speed);
+  } else {
+
+  }
+}
+
 function moveCircle2() {
   if (step2 < path2.length) {
     const destinationX = path2[step2].x;
@@ -510,6 +533,10 @@ function moveCircle3() {
     /*     gameOver(); */
   }
 }
+
+moveCircle1();
+moveCircle2();
+moveCircle3();
 
 const speed = 1000;
 const circleDelay = 5000;
@@ -553,7 +580,9 @@ function createCircle(path, towerClass) {
 }
 
 function startCircles() {
+  createCircle(path1, "squareTower-class");
   createCircle(path2, "squareTower-class");
+  createCircle(path3, "squareTower-class");
 }
 
 startCircles();

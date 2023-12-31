@@ -16,9 +16,9 @@
     height: 40px;
     background-color: transparent;
     text-align: center;
-    color: rgba(192, 192, 192, 0.5);
+/*     color: rgba(192, 192, 192, 0.5); */
     box-sizing: border-box;
-/*     color: transparent; */
+    color: transparent;
     border: 1px solid rgba(192, 192, 192, 0.25);
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -26,6 +26,10 @@
 
 .squareTower-class {
     background-color: blue;
+}
+
+.towerOnCooldown {
+    background-color: yellow;
 }
 
 #d9, #d8, #d7, #d6, #d5, #d4, #d3, #d2, #d1 {
@@ -84,21 +88,35 @@
     0%, 100% {
         transform: translateY(0);
     }
+    10% {
+        transform: translateY(-2px)
+    }
     20% {
-        transform: translateY(-3.3px)
+        transform: translateY(-4px);
+    }
+    30% {
+        transform: translateY(-6px)
     }
     40% {
-        transform: translateY(-6.6px);
+        transform: translateY(-8px)
+    }
+    50% {
+        transform: translateY(-10px);
     }
     60% {
-        transform: translateY(-10px)
+        transform: translateY(-8px)
+    }
+    70% {
+        transform: translateY(-6px)
     }
     80% {
-        transform: translateY(-6.6px)
+        transform: translateY(-4px)
     }
+    90% {
+        transform: translateY(-2px)
+    }
+
 }
-
-
 
 .circle {
     width: 20px;
@@ -109,10 +127,11 @@
     position: absolute;
     box-sizing: border-box;
     box-shadow: 5px 5px 5px rgba(192, 192, 192, 0.5);
-/*     animation: bounce 1s infinite; */
+    animation: bounce 1s infinite;
+    transition: all 1s ease;
 }
 
-.circle1 {
+/* .circle1 {
     top:15px;
     left:410px;
 }
@@ -125,7 +144,7 @@
 .circle3 {
     top:15px;
     left:490px;
-}
+} */
 /* .square {
     width: 37px;
     height: 37px;
