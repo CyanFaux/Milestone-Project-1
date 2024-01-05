@@ -96,7 +96,7 @@ createTower.forEach((cell) => {
     if (towerCount > 0) {
     cell.classList.add("squareTower-class");
     towerCount--;
-
+    cell.style.cursor = "default";
     squareScoreDisplay.textContent = `Squares: ${towerCount}`;
     }
   });

@@ -1,134 +1,192 @@
-
 #field-div {
-    display: grid;
-    grid-template-columns: repeat(13, 40px);
-    grid-template-rows: repeat(13, 40px);
-    width: 520px;
-    height: 520px;
-    border: 8px solid black;
-    position: relative;
-    box-shadow: 5px 5px 5px rgba(192, 192, 192, 0.5);
-    border-radius: 1%;
+  display: grid;
+  grid-template-columns: repeat(13, 40px);
+  grid-template-rows: repeat(13, 40px);
+  width: 520px;
+  height: 520px;
+  border: 8px solid black;
+  position: relative;
+  box-shadow: 5px 5px 5px rgba(192, 192, 192, 0.5);
+  border-radius: 1%;
+  cursor: default;
 }
 
 .field-tile-class {
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    text-align: center;
-/*     color: rgba(192, 192, 192, 0.5); */
-    box-sizing: border-box;
-    color: transparent;
-/*     border: 1px solid rgba(192, 192, 192, 0.25); */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  width: 40px;
+  height: 40px;
+  /*     background-color: transparent; */
+  text-align: center;
+  color: rgba(192, 192, 192, 0.5);
+  box-sizing: border-box;
+      color: transparent;
+  border: 1px solid rgba(192, 192, 192, 0.25);
+  transition: background-color 0.3s ease;
+  user-select: none;
 }
 
 .squareTower-class {
-    background-color: blue;
+  background-color: blue;
 }
 
 .towerOnCooldown {
-    background-color: yellow;
+  background-color: yellow;
 }
 
-#d9, #d8, #d7, #d6, #d5, #d4, #d3, #d2, #d1 {
-    border-left: 4px solid rgb(0, 255, 0);
-    border-top: 2px solid rgb(0, 255, 0);
-    border-bottom: 2px solid rgb(0, 255, 0);
-    border-right: 2px solid rgb(0, 255, 0);
+.towerWalls {
+    cursor: pointer;
 }
 
-#e9, #e8, #e7, #e6, #e5, #e4, #e3, #e2, #e1 {
-    border-left: 2px solid rgb(0, 255, 0);
-    border-top: 2px solid rgb(0, 255, 0);
-    border-bottom: 2px solid rgb(0, 255, 0);
-    border-right: 4px solid rgb(0, 255, 0);
-}
-#i12, #i11, #i10, #i9, #i8, #i7, #i6, #i5, #i4 {
-    border-left: 4px solid rgb(0, 255, 0);
-    border-top: 2px solid rgb(0, 255, 0);
-    border-bottom: 2px solid rgb(0, 255, 0);
-    border-right: 2px solid rgb(0, 255, 0);
-}
-
-#j12, #j11, #j10, #j9, #j8, #j7, #j6, #j5, #j4 {
-    border-left: 2px solid rgb(0, 255, 0);
-    border-top: 2px solid rgb(0, 255, 0);
-    border-bottom: 2px solid rgb(0, 255, 0);
-    border-right: 4px solid rgb(0, 255, 0);
-}
-#d10, #i13 {
-    border-left: 4px solid rgb(0, 255, 0);
-    border-top: 4px solid rgb(0, 255, 0);
-    border-bottom: 2px solid rgb(0, 255, 0);
-    border-right: 2px solid rgb(0, 255, 0);
+#d9,
+#d8,
+#d7,
+#d6,
+#d5,
+#d4,
+#d3,
+#d2,
+#d1 {
+  border-left: 4px solid rgb(0, 255, 0);
+  border-top: 2px solid rgb(0, 255, 0);
+  border-bottom: 2px solid rgb(0, 255, 0);
+  border-right: 2px solid rgb(0, 255, 0);
 }
 
-#e10, #j13 {
-    border-left: 2px solid rgb(0, 255, 0);
-    border-top: 4px solid rgb(0, 255, 0);
-    border-bottom: 2px solid rgb(0, 255, 0);
-    border-right: 4px solid rgb(0, 255, 0);
+#e9,
+#e8,
+#e7,
+#e6,
+#e5,
+#e4,
+#e3,
+#e2,
+#e1 {
+  border-left: 2px solid rgb(0, 255, 0);
+  border-top: 2px solid rgb(0, 255, 0);
+  border-bottom: 2px solid rgb(0, 255, 0);
+  border-right: 4px solid rgb(0, 255, 0);
 }
-#d1, #i4 {
-    border-left: 4px solid rgb(0, 255, 0);
-    border-top: 2px solid rgb(0, 255, 0);
-    border-bottom: 4px solid rgb(0, 255, 0);
-    border-right: 2px solid rgb(0, 255, 0);
+#i12,
+#i11,
+#i10,
+#i9,
+#i8,
+#i7,
+#i6,
+#i5,
+#i4 {
+  border-left: 4px solid rgb(0, 255, 0);
+  border-top: 2px solid rgb(0, 255, 0);
+  border-bottom: 2px solid rgb(0, 255, 0);
+  border-right: 2px solid rgb(0, 255, 0);
 }
 
-#e1, #j4 {
-    border-left: 2px solid rgb(0, 255, 0);
-    border-top: 2px solid rgb(0, 255, 0);
-    border-bottom: 4px solid rgb(0, 255, 0);
-    border-right: 4px solid rgb(0, 255, 0);
+#j12,
+#j11,
+#j10,
+#j9,
+#j8,
+#j7,
+#j6,
+#j5,
+#j4 {
+  border-left: 2px solid rgb(0, 255, 0);
+  border-top: 2px solid rgb(0, 255, 0);
+  border-bottom: 2px solid rgb(0, 255, 0);
+  border-right: 4px solid rgb(0, 255, 0);
 }
+#d10,
+#i13 {
+  border-left: 4px solid rgb(0, 255, 0);
+  border-top: 4px solid rgb(0, 255, 0);
+  border-bottom: 2px solid rgb(0, 255, 0);
+  border-right: 2px solid rgb(0, 255, 0);
+}
+
+#e10,
+#j13 {
+  border-left: 2px solid rgb(0, 255, 0);
+  border-top: 4px solid rgb(0, 255, 0);
+  border-bottom: 2px solid rgb(0, 255, 0);
+  border-right: 4px solid rgb(0, 255, 0);
+}
+#d1,
+#i4 {
+  border-left: 4px solid rgb(0, 255, 0);
+  border-top: 2px solid rgb(0, 255, 0);
+  border-bottom: 4px solid rgb(0, 255, 0);
+  border-right: 2px solid rgb(0, 255, 0);
+}
+
+#e1,
+#j4 {
+  border-left: 2px solid rgb(0, 255, 0);
+  border-top: 2px solid rgb(0, 255, 0);
+  border-bottom: 4px solid rgb(0, 255, 0);
+  border-right: 4px solid rgb(0, 255, 0);
+}
+
+#a1,
+#b1,
+#c1 {
+  background-color: rgb(255, 0, 0);
+  border-top: 2px solid rgb(255, 0, 0);
+  animation: flicker 2s infinite alternate;
+}
+
 @keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    10% {
-        transform: translateY(-2px)
-    }
-    20% {
-        transform: translateY(-4px);
-    }
-    30% {
-        transform: translateY(-6px)
-    }
-    40% {
-        transform: translateY(-8px)
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-8px)
-    }
-    70% {
-        transform: translateY(-6px)
-    }
-    80% {
-        transform: translateY(-4px)
-    }
-    90% {
-        transform: translateY(-2px)
-    }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(-2px);
+  }
+  20% {
+    transform: translateY(-4px);
+  }
+  30% {
+    transform: translateY(-6px);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-8px);
+  }
+  70% {
+    transform: translateY(-6px);
+  }
+  80% {
+    transform: translateY(-4px);
+  }
+  90% {
+    transform: translateY(-2px);
+  }
+}
 
+@keyframes flicker {
+  100% {
+    opacity: 0.5;
+  }
+  0% {
+    opacity: 0.25;
+  }
 }
 
 .circle {
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 50%;
-    z-index: 2;
-    position: absolute;
-    box-sizing: border-box;
-    box-shadow: 5px 5px 5px rgba(192, 192, 192, 0.5);
-    animation: bounce 1s infinite;
-    transition: all 1s ease;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 5px rgba(192, 192, 192, 0.5);
+  animation: bounce 1s infinite;
+  transition: all 1s ease;
 }
 
 /* .circle1 {
@@ -156,4 +214,3 @@
     right: 121px;
     box-sizing: border-box;
 } */
-

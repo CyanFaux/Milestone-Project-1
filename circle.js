@@ -18,7 +18,7 @@ const towersOnCooldownArray = [];
 let circleCount = 0;
 const currentTowerCount = getTowerCount();
 const circleScoreDisplay = document.getElementById("circle-score");
-const squareScoreDisplay = document.getElementById("square-score")
+const squareScoreDisplay = document.getElementById("square-score");
 
 const path1 = [
   { x: 410, y: 15 },
@@ -162,58 +162,61 @@ const path3 = [
 ];
 
 function checkTowerRange(circle, path, towerClass, cooldown, towerOnCooldown) {
-    /* defines the implicit method for describing the size and position of the circle */
-    const circleRect = circle.getBoundingClientRect();
-    /* defines the calculation of the horizontal coordinate of the center of the circle */
-    const circleX = circleRect.x + circleRect.width / 2;
-    /* defines the calculation of the vertical coordinate of the center of the circle */
-    const circleY = circleRect.y + circleRect.height / 2;
-    /* defines the rounded horizontal coordinate of the tile containing the circle */
-    const containingTileX = Math.floor(circleX / tileWidth);
-    /* defines the rounded vertical coordinate of the tile containing the circle */
-    const containingTileY = Math.floor(circleY / tileHeight);
-    /* defines the check for nearby towers */
-    const nearbyTowerRange = document.querySelectorAll(`.${towerClass}`);
+  /* defines the implicit method for describing the size and position of the circle */
+  const circleRect = circle.getBoundingClientRect();
+  /* defines the calculation of the horizontal coordinate of the center of the circle */
+  const circleX = circleRect.x + circleRect.width / 2;
+  /* defines the calculation of the vertical coordinate of the center of the circle */
+  const circleY = circleRect.y + circleRect.height / 2;
+  /* defines the rounded horizontal coordinate of the tile containing the circle */
+  const containingTileX = Math.floor(circleX / tileWidth);
+  /* defines the rounded vertical coordinate of the tile containing the circle */
+  const containingTileY = Math.floor(circleY / tileHeight);
+  /* defines the check for nearby towers */
+  const nearbyTowerRange = document.querySelectorAll(`.${towerClass}`);
 
-    /* for...of loop that iterates through the towerWalls class */
-    for (const currentTower of nearbyTowerRange) {
-      /* defines the implicit method for describing the size and position of the detected tower */
-      const tileRect = currentTower.getBoundingClientRect();
-      /* defines the rounded horizontal coordinate of the detected tower */
-      const currentTileX = Math.floor(tileRect.x / tileWidth);
-      /* defines the rounded vertical coordinate of the detected tower */
-      const currentTileY = Math.floor(tileRect.y / tileHeight);
-      /* defines the Manhattan distance between the circle's tile and the tower */
-      const circleToTowerDistance =
-        Math.abs(containingTileX - currentTileX) +
-        Math.abs(containingTileY - currentTileY);
+  /* for...of loop that iterates through the towerWalls class */
+  for (const currentTower of nearbyTowerRange) {
+    /* defines the implicit method for describing the size and position of the detected tower */
+    const tileRect = currentTower.getBoundingClientRect();
+    /* defines the rounded horizontal coordinate of the detected tower */
+    const currentTileX = Math.floor(tileRect.x / tileWidth);
+    /* defines the rounded vertical coordinate of the detected tower */
+    const currentTileY = Math.floor(tileRect.y / tileHeight);
+    /* defines the Manhattan distance between the circle's tile and the tower */
+    const circleToTowerDistance =
+      Math.abs(containingTileX - currentTileX) +
+      Math.abs(containingTileY - currentTileY);
 
-      /* defines what happens when a circle is within an off cooldown tower range */
-      if (!towersOnCooldownArray.includes(currentTower) && circleToTowerDistance <= towerRange) {
-        circle.style.backgroundColor = "rgb(255, 0, 255)";
-        circle.style.opacity = "0";
-        circle.remove();
-        circleCount++;
-        circleScoreDisplay.textContent = `Circles: ${circleCount}`;
-        if (circleCount > 0 && circleCount % 4 === 0) {
-          incrementTowerCount();
-          squareScoreDisplay.textContent = `Squares: ${currentTowerCount}`;
-        }
-        /* adds the cooldown class to the tower currently being iterated */
-        currentTower.classList.add("towerOnCooldown");
-        /* puts the current tower in the cooldown array */
-        towersOnCooldownArray.push(currentTower);
-
-        setTimeout(() => {
-          currentTower.classList.remove("towerOnCooldown");
-          const index = towersOnCooldownArray.indexOf(currentTower);
-          if (index > -1) {
-            towersOnCooldownArray.splice(index, 1)
-          }
-        }, cooldown);
-
-        break;
+    /* defines what happens when a circle is within an off cooldown tower range */
+    if (
+      !towersOnCooldownArray.includes(currentTower) &&
+      circleToTowerDistance <= towerRange
+    ) {
+      circle.style.backgroundColor = "rgb(255, 0, 255)";
+      circle.style.opacity = "0";
+      circle.remove();
+      circleCount++;
+      circleScoreDisplay.textContent = `Circles: ${circleCount}`;
+      if (circleCount > 0 && circleCount % 4 === 0) {
+        incrementTowerCount();
+        squareScoreDisplay.textContent = `Squares: ${currentTowerCount}`;
       }
+      /* adds the cooldown class to the tower currently being iterated */
+      currentTower.classList.add("towerOnCooldown");
+      /* puts the current tower in the cooldown array */
+      towersOnCooldownArray.push(currentTower);
+
+      setTimeout(() => {
+        currentTower.classList.remove("towerOnCooldown");
+        const index = towersOnCooldownArray.indexOf(currentTower);
+        if (index > -1) {
+          towersOnCooldownArray.splice(index, 1);
+        }
+      }, cooldown);
+
+      break;
+    }
   }
 }
 
@@ -248,7 +251,36 @@ function createCircle(path, towerClass) {
   circle.style.left = `${startingX}px`;
   circle.style.top = `${startingY}px`;
 
-  let step = 0;
+let circleRect;
+
+circle.addEventListener("animationiteration", () => {
+  checkGameOver(circle);
+});
+
+  function checkGameOver(circle) {
+    circleRect = circle.getBoundingClientRect();
+
+    const a1Rect = document.getElementById("a1").getBoundingClientRect();
+    const b1Rect = document.getElementById("b1").getBoundingClientRect();
+    const c1Rect = document.getElementById("c1").getBoundingClientRect();
+
+    function reachedEnd(rect1, rect2) {
+      return !(
+        rect1.right < rect2.left ||
+        rect1.left > rect2.right ||
+        rect1.bottom < rect2.top ||
+        rect1.top > rect2.bottom
+      );
+    }
+    if (
+      reachedEnd(circleRect, a1Rect) ||
+      reachedEnd(circleRect, b1Rect) ||
+      reachedEnd(circleRect, c1Rect)
+    ) {
+      gameOver();
+    }
+  }
+
   /* requests implicit timestamp parameter */
   function moveCircle(timestamp) {
     /* sets start time equal to timestamp if circle.startTime has not been initialized */
@@ -271,33 +303,53 @@ function createCircle(path, towerClass) {
       checkTowerRange(circle, path, towerClass, cooldown);
 
       requestAnimationFrame(moveCircle);
-    } else {
-           gameOver();
     }
   }
+  if (fieldDiv) {
   fieldDiv.appendChild(circle);
   requestAnimationFrame(moveCircle);
+  }
 }
 
 function startCircles() {
   createCircle(path2, "squareTower-class");
-  setTimeout(() => createCircle(path1, "squareTower-class"), 2000);
-  setTimeout(() => createCircle(path3, "squareTower-class"), 4000);
-  setTimeout(() => createCircle(path1, "squareTower-class"), 8000);
-  setTimeout(() => createCircle(path2, "squareTower-class"), 8000);
-  setTimeout(() => createCircle(path2, "squareTower-class"), 10000);
-  setTimeout(() => createCircle(path3, "squareTower-class"), 10000);
-  setTimeout(() => createCircle(path1, "squareTower-class"), 12000);
-  setTimeout(() => createCircle(path3, "squareTower-class"), 12000);
-  setTimeout(() => createCircle(path1, "squareTower-class"), 16000);
-  setTimeout(() => createCircle(path2, "squareTower-class"), 16000);
-  setTimeout(() => createCircle(path3, "squareTower-class"), 16000);
-  setTimeout(() => createCircle(path1, "squareTower-class"), 18000);
-  setTimeout(() => createCircle(path2, "squareTower-class"), 18000);
-  setTimeout(() => createCircle(path3, "squareTower-class"), 18000);
-  setTimeout(() => createCircle(path1, "squareTower-class"), 20000);
-  setTimeout(() => createCircle(path2, "squareTower-class"), 20000);
-  setTimeout(() => createCircle(path3, "squareTower-class"), 20000);
+  setTimeout(() => {
+    setInterval(() => createCircle(path2, "squareTower-class"), 6000);
+  }, 500);
+  setTimeout(() => {
+    setInterval(() => createCircle(path1, "squareTower-class"), 6000);
+  }, 4000);
+  setTimeout(() => {
+    setInterval(() => createCircle(path3, "squareTower-class"), 6000);
+  }, 6000);
 }
 
-startCircles();
+const startButton = document.getElementById("start-button")
+
+let gameTimer = 1;
+let timerOn = false;
+let seconds = 0;
+
+function formatTime(secomds) {
+  const minutes = Math.floor(seconds / 60).toString().padStart(2, "0");
+  const remainingSeconds = (seconds % 60).toString().padStart(2, "0");
+  return `${minutes}:${remainingSeconds}`;
+}
+
+function startTimer() {
+  if (!timerOn) {
+    timerOn = true;
+
+    setInterval(() => {
+      seconds++;
+      gameTimer = seconds;
+      startButton.textContent = formatTime(gameTimer);
+    }, 1000);
+  }
+  
+}
+
+startButton.addEventListener("click", () => {
+  startTimer();
+  startCircles();
+});
