@@ -34,6 +34,8 @@
 
 .towerWalls {
     cursor: pointer;
+    background-color: rgba(0, 255, 0, 0.25);
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.25);
 }
 
 #d9,
@@ -133,6 +135,10 @@
   animation: flicker 2s infinite alternate;
 }
 
+#d1, #d2, #e1, #e2, #i13, #j13, #i12, #j12 {
+    background-color: rgb(0, 255, 0);
+}
+
 @keyframes bounce {
   0%,
   100% {
@@ -179,7 +185,6 @@
 .circle {
   width: 20px;
   height: 20px;
-  background-color: red;
   border-radius: 50%;
   z-index: 2;
   position: absolute;
@@ -189,28 +194,11 @@
   transition: all 1s ease;
 }
 
-/* .circle1 {
-    top:15px;
-    left:410px;
+
+.circle.normal {
+    background-color: red;
 }
 
-.circle2 {
-    top:15px;
-    left:450px;
+.circle.hard {
+    background-color: black;
 }
-
-.circle3 {
-    top:15px;
-    left:490px;
-} */
-/* .square {
-    width: 37px;
-    height: 37px;
-    background-color: blue;
-    border: 1px solid black;
-    z-index: 2;
-    position: absolute;
-    top: 2px;
-    right: 121px;
-    box-sizing: border-box;
-} */

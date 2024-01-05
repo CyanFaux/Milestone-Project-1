@@ -25,10 +25,10 @@ for (let row = 13; row >= 1; row--) {
 const allCells = document.querySelectorAll(".field-tile-class");
 
 const towerWalls = [
-  "i13",
+/*   "i13",
   "j13",
   "i12",
-  "j12",
+  "j12", */
   "i11",
   "j11",
   "i10",
@@ -45,8 +45,8 @@ const towerWalls = [
   "j5",
   "i4",
   "j4",
-  "d1",
-  "d2",
+/*   "d1",
+  "d2", */
   "d3",
   "d4",
   "d5",
@@ -55,8 +55,8 @@ const towerWalls = [
   "d8",
   "d9",
   "d10",
-  "e1",
-  "e2",
+/*   "e1",
+  "e2", */
   "e3",
   "e4",
   "e5",
@@ -77,7 +77,7 @@ export function incrementTowerCount() {
   towerCount++;
 }
 
-const squareScoreDisplay = document.getElementById("square-score")
+const squareScoreDisplay = document.getElementById("square-score");
 
 allCells.forEach((cell) => {
   /* equates placeholder variable with loop result */
@@ -94,10 +94,42 @@ const createTower = document.querySelectorAll(".towerWalls");
 createTower.forEach((cell) => {
   cell.addEventListener("click", () => {
     if (towerCount > 0) {
-    cell.classList.add("squareTower-class");
-    towerCount--;
-    cell.style.cursor = "default";
-    squareScoreDisplay.textContent = `Squares: ${towerCount}`;
+      cell.classList.remove("towerWalls");
+      cell.classList.add("squareTower-class");
+      towerCount--;
+      cell.style.cursor = "default";
+      squareScoreDisplay.textContent = `Squares: ${towerCount}`;
     }
   });
 });
+
+function gameWin() {
+  setTimeout(() => {
+    const gameWinHTML = `
+    <h1>You Win!</h1>
+    <p>Try Again?</p>
+    <button id="restartButton">Restart</button>`;
+
+    document.body.innerHTML = gameWinHTML;
+
+    // Add a click event listener to the restart button
+    const restartButton = document.getElementById("restartButton");
+
+    // Add a click event listener
+    restartButton.addEventListener("click", function () {
+      // Reload the page
+      location.reload();
+    });
+  }, 1000);
+}
+
+const gameWinClass = "squareTower-class";
+const gameWinCount = 32;
+
+function checkGameWinCount() {
+  const elements = document.getElementsByClassName(gameWinClass);
+
+  if (elements.length >= gameWinCount) {
+    gameWin();
+  }
+}

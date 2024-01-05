@@ -11,7 +11,7 @@ const tileHeight = 40;
 const circleWidth = 20;
 const circleHeight = 20;
 /* define speed in ms */
-const speed = 42000;
+const speed = 50000;
 /* define delay between tower shot */
 const cooldown = 5000;
 const towersOnCooldownArray = [];
@@ -161,6 +161,46 @@ const path3 = [
   { x: 90, y: 535 },
 ];
 
+const path4 = [
+  { x: 410, y: 15 },
+  { x: 410, y: 55 } /* down */,
+  { x: 410, y: 95 },
+  { x: 410, y: 135 },
+  { x: 410, y: 175 },
+  { x: 410, y: 215 },
+  { x: 410, y: 255 },
+  { x: 410, y: 295 },
+  { x: 410, y: 335 },
+  { x: 410, y: 375 },
+  { x: 410, y: 415 }, 
+  { x: 370, y: 415 }, /* left */
+  { x: 330, y: 415 },
+  { x: 290, y: 415 },
+  { x: 250, y: 415 },
+  { x: 250, y: 375 }, /* up */
+  { x: 250, y: 335 },
+  { x: 250, y: 295 },
+  { x: 250, y: 255 },
+  { x: 250, y: 215 },
+  { x: 250, y: 175 },
+  { x: 250, y: 135 },
+  { x: 250, y: 95 },
+  { x: 210, y: 95 }, /* left */
+  { x: 170, y: 95 },
+  { x: 130, y: 95 },
+  { x: 90, y: 95 },
+  { x: 90, y: 135 }, /* down */
+  { x: 90, y: 175 },
+  { x: 90, y: 215 },
+  { x: 90, y: 255 },
+  { x: 90, y: 295 },
+  { x: 90, y: 335 },
+  { x: 90, y: 375 },
+  { x: 90, y: 415 },
+  { x: 90, y: 455 },
+  { x: 90, y: 495 },
+  { x: 90, y: 535 },
+]
 function checkTowerRange(circle, path, towerClass, cooldown, towerOnCooldown) {
   /* defines the implicit method for describing the size and position of the circle */
   const circleRect = circle.getBoundingClientRect();
@@ -238,12 +278,12 @@ function gameOver() {
   });
 }
 
-function createCircle(path, towerClass) {
+function createCircle(path, towerClass, className) {
   const fieldDiv = document.getElementById("field-div");
   /* create circle div */
   const circle = document.createElement("div");
   /* give it class circle */
-  circle.className = "circle";
+  circle.className = `circle ${className}`;
   /* set the starting point equal to the x and y coordinates of each path + 15px */
   const startingX = path[0].x;
   const startingY = path[0].y;
@@ -251,11 +291,12 @@ function createCircle(path, towerClass) {
   circle.style.left = `${startingX}px`;
   circle.style.top = `${startingY}px`;
 
-let circleRect;
+if (fieldDiv) {
+  let circleRect;
 
-circle.addEventListener("animationiteration", () => {
-  checkGameOver(circle);
-});
+  circle.addEventListener("animationiteration", () => {
+    checkGameOver(circle);
+  });
 
   function checkGameOver(circle) {
     circleRect = circle.getBoundingClientRect();
@@ -280,7 +321,7 @@ circle.addEventListener("animationiteration", () => {
       gameOver();
     }
   }
-
+}
   /* requests implicit timestamp parameter */
   function moveCircle(timestamp) {
     /* sets start time equal to timestamp if circle.startTime has not been initialized */
@@ -306,32 +347,21 @@ circle.addEventListener("animationiteration", () => {
     }
   }
   if (fieldDiv) {
-  fieldDiv.appendChild(circle);
-  requestAnimationFrame(moveCircle);
+    fieldDiv.appendChild(circle);
+    requestAnimationFrame(moveCircle);
   }
 }
 
-function startCircles() {
-  createCircle(path2, "squareTower-class");
-  setTimeout(() => {
-    setInterval(() => createCircle(path2, "squareTower-class"), 6000);
-  }, 500);
-  setTimeout(() => {
-    setInterval(() => createCircle(path1, "squareTower-class"), 6000);
-  }, 4000);
-  setTimeout(() => {
-    setInterval(() => createCircle(path3, "squareTower-class"), 6000);
-  }, 6000);
-}
+const startButton = document.getElementById("start-button");
 
-const startButton = document.getElementById("start-button")
-
-let gameTimer = 1;
+let gameTimer = 0;
 let timerOn = false;
 let seconds = 0;
 
-function formatTime(secomds) {
-  const minutes = Math.floor(seconds / 60).toString().padStart(2, "0");
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60)
+    .toString()
+    .padStart(2, "0");
   const remainingSeconds = (seconds % 60).toString().padStart(2, "0");
   return `${minutes}:${remainingSeconds}`;
 }
@@ -340,15 +370,33 @@ function startTimer() {
   if (!timerOn) {
     timerOn = true;
 
-    setInterval(() => {
+  setInterval(() => {
       seconds++;
       gameTimer = seconds;
       startButton.textContent = formatTime(gameTimer);
     }, 1000);
   }
-  
 }
+let intervalPath1, intervalPath2, intervalPath3, intervalPath4;
+function startCircles() {
+  clearInterval(intervalPath1);
+  clearInterval(intervalPath2);
+  clearInterval(intervalPath3);
+  clearInterval(intervalPath4)
 
+  setTimeout(() => {
+    intervalPath1 = setInterval(() => createCircle(path2, "squareTower-class", "normal"), 5000);
+  }, 2000);
+  setTimeout(() => {
+    intervalPath2 = setInterval(() => createCircle(path1, "squareTower-class", "normal"), 5000);
+  }, 3000);
+  setTimeout(() => {
+    intervalPath3 = setInterval(() => createCircle(path3, "squareTower-class", "normal"), 5000);
+  }, 3000);
+  setTimeout(() => {
+    intervalPath4 = setInterval(() => createCircle(path4, "squareTower-class", "hard"), 5000);
+  }, 5000);
+}
 startButton.addEventListener("click", () => {
   startTimer();
   startCircles();
