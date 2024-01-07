@@ -26,9 +26,9 @@ const allCells = document.querySelectorAll(".field-tile-class");
 
 const towerWalls = [
 /*   "i13",
-  "j13",
+  "j13", */
   "i12",
-  "j12", */
+  "j12",
   "i11",
   "j11",
   "i10",
@@ -43,10 +43,10 @@ const towerWalls = [
   "i6",
   "i5",
   "j5",
-  "i4",
-  "j4",
-/*   "d1",
-  "d2", */
+/*   "i4",
+  "j4", */
+/*   "d1", */
+  "d2",
   "d3",
   "d4",
   "d5",
@@ -54,9 +54,9 @@ const towerWalls = [
   "d7",
   "d8",
   "d9",
-  "d10",
-/*   "e1",
-  "e2", */
+/*   "d10", */
+/*   "e1", */
+  "e2",
   "e3",
   "e4",
   "e5",
@@ -64,7 +64,7 @@ const towerWalls = [
   "e7",
   "e8",
   "e9",
-  "e10",
+/*   "e10", */
 ];
 
 let towerCount = 2;
