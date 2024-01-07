@@ -284,7 +284,7 @@ function createCircle(path, towerClass, className) {
   const circle = document.createElement("div");
   /* give it class circle */
   circle.className = `circle ${className}`;
-  /* set the starting point equal to the x and y coordinates of each path + 15px */
+  /* set the starting point equal to the x and y coordinates of each path */
   const startingX = path[0].x;
   const startingY = path[0].y;
 
@@ -393,9 +393,9 @@ function startCircles() {
   setTimeout(() => {
     intervalPath3 = setInterval(() => createCircle(path3, "squareTower-class", "normal"), 5000);
   }, 3000);
-  setTimeout(() => {
+/*   setTimeout(() => {
     intervalPath4 = setInterval(() => createCircle(path4, "squareTower-class", "hard"), 5000);
-  }, 5000);
+  }, 5000); */
 }
 startButton.addEventListener("click", () => {
   startTimer();
