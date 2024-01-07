@@ -135,7 +135,7 @@
   animation: flicker 2s infinite alternate;
 }
 
-#d1, #d2, #e1, #e2, #i13, #j13, #i12, #j12 {
+#d1, #d10, #e1, #e10, #i13, #j13, #i4, #j4 {
     background-color: rgb(0, 255, 0);
 }
 
