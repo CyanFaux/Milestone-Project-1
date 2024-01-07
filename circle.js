@@ -1,5 +1,6 @@
 import { getTowerCount, incrementTowerCount } from "./script.js";
 
+/* currently not in use */
 const circle1 = document.querySelector(".circle1");
 const circle2 = document.querySelector(".circle2");
 const circle3 = document.querySelector(".circle3");
@@ -8,6 +9,7 @@ const towerRange = 3;
 
 const tileWidth = 40;
 const tileHeight = 40;
+/* currently not in use */
 const circleWidth = 20;
 const circleHeight = 20;
 /* define speed in ms */
@@ -291,6 +293,7 @@ function createCircle(path, towerClass, className) {
   circle.style.left = `${startingX}px`;
   circle.style.top = `${startingY}px`;
 
+    /* below is mostly chatGPT */
 if (fieldDiv) {
   let circleRect;
 
@@ -358,6 +361,7 @@ let gameTimer = 0;
 let timerOn = false;
 let seconds = 0;
 
+  /* below is mostly chatGPT */
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60)
     .toString()

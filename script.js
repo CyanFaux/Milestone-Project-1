@@ -103,6 +103,7 @@ createTower.forEach((cell) => {
   });
 });
 
+
 function gameWin() {
   setTimeout(() => {
     const gameWinHTML = `
@@ -123,6 +124,7 @@ function gameWin() {
   }, 1000);
 }
 
+  /* currently not in use */
 const gameWinClass = "squareTower-class";
 const gameWinCount = 32;
 

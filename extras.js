@@ -1,3 +1,5 @@
+    /* unused code and too much chatGPT */
+
 const playingField = [
   [
     "a13",
